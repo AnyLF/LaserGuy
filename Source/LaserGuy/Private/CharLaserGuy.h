@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "BaseCharacter.h"
+#include "GameFramework/Actor.h"
+#include "Components/ChildActorComponent.h"
 #include "CharLaserGuy.generated.h"
 
 /**
@@ -17,4 +19,14 @@ class ACharLaserGuy : public ABaseCharacter
 public:
 
 	ACharLaserGuy();
+
+	virtual void BeginPlay() override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+
+private:
+	void MoveForward(float Amount);
+	void MoveRight(float Amount);
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	UChildActorComponent* ChildActor;
 };
