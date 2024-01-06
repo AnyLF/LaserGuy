@@ -55,7 +55,7 @@ void ACharLaserGuy::BeginPlay()
 
 void ACharLaserGuy::OnConstruction(const FTransform& Transform)
 {
-	//UpdateBodyParts();
+	UpdateBodyParts();
 }
 
 void ACharLaserGuy::ChangeBodyPart(EBodyPart index, int value, bool DirectSet)
@@ -130,6 +130,9 @@ void ACharLaserGuy::UpdateBodyParts()
 {
 	ChangeBodyPart(EBodyPart::BP_Head, 0, false);
 	ChangeBodyPart(EBodyPart::BP_Body, 0, false);
-	ChangeBodyPart(EBodyPart::BP_Laser, 0, false);
-	ChangeBodyPart(EBodyPart::BP_LaserImpact, 0, false);
+	if (Laser)
+	{
+		ChangeBodyPart(EBodyPart::BP_Laser, 0, false);
+		ChangeBodyPart(EBodyPart::BP_LaserImpact, 0, false);
+	}
 }
