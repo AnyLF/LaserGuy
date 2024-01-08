@@ -4,6 +4,7 @@
 #include "CharLaserGuy.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "LaserGuyGameInstance.h"
+#include "Kismet/KismetMathLibrary.h"
 
 static UDataTable* SBodyParts = nullptr;
 
@@ -35,6 +36,9 @@ ACharLaserGuy::ACharLaserGuy()
 
 	static ConstructorHelpers::FObjectFinder<UDataTable> DT_BodyParts(TEXT("/DataTable'/Game/Blueprints/Datas/DT_BodyParts.DT_BodyParts'"));
 	SBodyParts = DT_BodyParts.Object;
+
+	static ConstructorHelpers::FObjectFinder<UMaterialInterface> MFreeze(TEXT("MaterialInstanceConstant'/Game/LevelPrototyping/Materials/MI_FadedWhite.MI_FadedWhite'"));
+	FreezeMaterial = MFreeze.Object;
 }
 
 void ACharLaserGuy::BeginPlay()
@@ -94,6 +98,27 @@ void ACharLaserGuy::ChangeBodyPart(EBodyPart index, int value, bool DirectSet)
 	case EBodyPart::BP_Laser:Laser->Laser->SetAsset(List->ListNiagra[CurrentIndex]); break;
 	case EBodyPart::BP_LaserImpact:Laser->LaserImpact->SetAsset(List->ListNiagra[CurrentIndex]); break;
 	}
+}
+
+void ACharLaserGuy::LookTo(FVector Target)
+{
+	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), Target);
+
+	PartHead->SetRelativeRotation(FRotator(PartHead->GetRelativeRotation().Pitch, LookAtRotation.Yaw, PartHead->GetRelativeRotation().Roll));
+}
+
+void ACharLaserGuy::FreezeLaserGuy()
+{
+	PartHead->SetOverlayMaterial(FreezeMaterial);
+	PartBody->SetOverlayMaterial(FreezeMaterial);
+	Laser->Freeze();
+}
+
+void ACharLaserGuy::UnFreezeLaserGuy()
+{
+	PartHead->SetOverlayMaterial(nullptr);
+	PartBody->SetOverlayMaterial(nullptr);
+	Laser->UnFreeze();
 }
 
 void ACharLaserGuy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

@@ -71,9 +71,6 @@ public:
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
     virtual void OnConstruction(const FTransform& Transform) override;
 
-    UFUNCTION(BlueprintCallable)
-    void ChangeBodyPart(EBodyPart index, int value, bool DirectSet);
-
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
     UArrowComponent* LaserSocket;
 
@@ -89,12 +86,31 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     ALaser* Laser;
 
+    //-------------------------------------------------
+
+    UFUNCTION(BlueprintCallable)
+    void ChangeBodyPart(EBodyPart index, int value, bool DirectSet);
+
+    UFUNCTION(BlueprintCallable)
+    void LookTo(FVector Target);
+
+    UFUNCTION(BlueprintCallable)
+    void FreezeLaserGuy();
+
+    UFUNCTION(BlueprintCallable)
+    void UnFreezeLaserGuy();
+
 private:
-	void MoveForward(float Amount);
-	void MoveRight(float Amount);
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UChildActorComponent* ChildActor;
+
+    UMaterialInterface* FreezeMaterial;
+
+    //-------------------------------------------------
+
+	void MoveForward(float Amount);
+	void MoveRight(float Amount);
 
     static FSMeshAssetList* GetBodyPartList(EBodyPart part);
 
