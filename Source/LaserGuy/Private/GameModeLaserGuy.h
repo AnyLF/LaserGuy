@@ -20,10 +20,13 @@ public:
 	AGameModeLaserGuy();
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Laser")
-	float LaserStabilization;
+	float CurrentOverHeatMeter;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Laser")
-	float LSIncreaseSpeed;
+	float OHMeterIncreaseSpeed;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Laser")
+	bool bOverHeatMeter;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Camera")
 	ACameraLocation* CameraLocation;

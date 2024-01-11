@@ -36,7 +36,7 @@ void ALaserRepairTool::Tick(float DeltaTime)
 void ALaserRepairTool::CollectLaserRepairTool()
 {
 	AGameModeLaserGuy* GM_LaserGuy = Cast<AGameModeLaserGuy>(UGameplayStatics::GetGameMode(this));
-	GM_LaserGuy->LaserStabilization = UKismetMathLibrary::Max(GM_LaserGuy->LaserStabilization - 25, 0);
+	GM_LaserGuy->CurrentOverHeatMeter = UKismetMathLibrary::Max(GM_LaserGuy->CurrentOverHeatMeter - 25, 0);
 	K2_DestroyActor();
 }
 

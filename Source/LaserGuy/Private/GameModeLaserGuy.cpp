@@ -5,8 +5,9 @@
 #include "Kismet/GameplayStatics.h"
 
 AGameModeLaserGuy::AGameModeLaserGuy() :
-	LaserStabilization(0),
-	LSIncreaseSpeed(0.5)
+	CurrentOverHeatMeter(0),
+	OHMeterIncreaseSpeed(0.6),
+	bOverHeatMeter(true)
 {
 
 }
@@ -21,12 +22,15 @@ void AGameModeLaserGuy::BeginPlay()
 {
 	Super::BeginPlay();
 
-	LaserStabilization = 0;
+	CurrentOverHeatMeter = 0;
 }
 
 void AGameModeLaserGuy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	LaserStabilization = LaserStabilization + LSIncreaseSpeed;
+	if (bOverHeatMeter)
+	{
+		CurrentOverHeatMeter = CurrentOverHeatMeter + OHMeterIncreaseSpeed;
+	}
 }
