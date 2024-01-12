@@ -100,6 +100,9 @@ public:
     UFUNCTION(BlueprintCallable)
     void UnFreezeLaserGuy();
 
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+    void FireLaser();
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Components")

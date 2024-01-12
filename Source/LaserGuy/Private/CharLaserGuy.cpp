@@ -4,7 +4,9 @@
 #include "CharLaserGuy.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "LaserGuyGameInstance.h"
+#include "GameModeLaserGuy.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 static UDataTable* SBodyParts = nullptr;
 
@@ -53,6 +55,13 @@ void ACharLaserGuy::BeginPlay()
 			PartSelection = Instance->PlayerInfo.BodyParts;
 			UpdateBodyParts();
 		}
+	}
+
+	AGameModeLaserGuy* CurrentGameMode = Cast<AGameModeLaserGuy>(UGameplayStatics::GetGameMode(this));
+
+	if (CurrentGameMode->bLaserAvailable)
+	{
+		FireLaser();
 	}
 	
 }
@@ -120,6 +129,12 @@ void ACharLaserGuy::UnFreezeLaserGuy()
 	PartBody->SetOverlayMaterial(nullptr);
 	Laser->UnFreeze();
 }
+
+void ACharLaserGuy::FireLaser_Implementation()
+{
+	UpdateBodyParts();
+}
+
 
 void ACharLaserGuy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

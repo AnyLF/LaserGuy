@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "CameraLocation.h"
+#include "CharLaserGuy.h"
 #include "GameModeLaserGuy.generated.h"
 
 /**
@@ -27,6 +28,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, Category = "Laser")
 	bool bOverHeatMeter;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Laser")
+	bool bLaserAvailable;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Camera")
 	ACameraLocation* CameraLocation;

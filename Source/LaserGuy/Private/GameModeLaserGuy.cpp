@@ -7,7 +7,8 @@
 AGameModeLaserGuy::AGameModeLaserGuy() :
 	CurrentOverHeatMeter(0),
 	OHMeterIncreaseSpeed(0.6),
-	bOverHeatMeter(true)
+	bOverHeatMeter(true),
+	bLaserAvailable(true)
 {
 
 }
