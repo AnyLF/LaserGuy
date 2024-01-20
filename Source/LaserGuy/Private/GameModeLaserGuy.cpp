@@ -24,6 +24,7 @@ void AGameModeLaserGuy::BeginPlay()
 	Super::BeginPlay();
 
 	CurrentOverHeatMeter = 0;
+	ReflectedLasers.Empty();
 }
 
 void AGameModeLaserGuy::Tick(float DeltaTime)

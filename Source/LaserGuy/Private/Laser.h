@@ -8,6 +8,8 @@
 #include "Mirror.h"
 #include "Laser.generated.h"
 
+class AGameModeLaserGuy;
+
 UCLASS()
 class ALaser : public AActor
 {
@@ -39,6 +41,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
 	TArray<AActor*> LaserIgnoreActors;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AGameModeLaserGuy* Gamemode;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AActor* LaserHitActor;

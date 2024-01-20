@@ -39,7 +39,7 @@ ACharLaserGuy::ACharLaserGuy()
 	static ConstructorHelpers::FObjectFinder<UDataTable> DT_BodyParts(TEXT("/DataTable'/Game/Blueprints/Datas/DT_BodyParts.DT_BodyParts'"));
 	SBodyParts = DT_BodyParts.Object;
 
-	static ConstructorHelpers::FObjectFinder<UMaterialInterface> MFreeze(TEXT("MaterialInstanceConstant'/Game/LevelPrototyping/Materials/MI_FadedWhite.MI_FadedWhite'"));
+	static ConstructorHelpers::FObjectFinder<UMaterialInterface> MFreeze(TEXT("MaterialInstanceConstant'/Game/LevelPrototyping/Materials/M_FadedMaterial1_Inst.M_FadedMaterial1_Inst'"));
 	FreezeMaterial = MFreeze.Object;
 }
 

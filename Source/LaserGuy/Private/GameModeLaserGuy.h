@@ -32,6 +32,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Laser")
 	bool bLaserAvailable;
 
+	UPROPERTY(BlueprintReadWrite, Category = "Laser")
+	TArray<ALaser*> ReflectedLasers;
+
 	UPROPERTY(BlueprintReadWrite, Category = "Camera")
 	ACameraLocation* CameraLocation;
 

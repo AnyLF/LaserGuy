@@ -2,8 +2,10 @@
 
 
 #include "Laser.h"
+#include "GameModeLaserGuy.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ALaser::ALaser():
@@ -26,7 +28,7 @@ ALaser::ALaser():
 void ALaser::BeginPlay()
 {
 	Super::BeginPlay();
-
+    Gamemode = Cast<AGameModeLaserGuy>(UGameplayStatics::GetGameMode(this));
 }
 
 // Called every frame
@@ -94,6 +96,7 @@ void ALaser::DestroyReflectedLaser()
 {
     if (ReflectedLaser)
     {
+        Gamemode->ReflectedLasers.Remove(this);
         ReflectedLaser->DestroyReflectedLaser();
         ReflectedLaser->K2_DestroyActor();
         ReflectedLaser = nullptr;
