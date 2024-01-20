@@ -43,7 +43,7 @@ void ALaser::LaserTrace(float& Distance, FVector& Location, FVector& ImpactNorma
     FVector StartLocation = GetActorLocation();
     FVector EndLocation = StartLocation + (GetActorForwardVector() * LaserDistance);
 
-    float SphereRadius = 15.0f;
+    float SphereRadius = 30.0f;
     TEnumAsByte<ETraceTypeQuery> TraceChannel = ETraceTypeQuery::TraceTypeQuery1;
     LaserIgnoreActors.Add(this);
 
