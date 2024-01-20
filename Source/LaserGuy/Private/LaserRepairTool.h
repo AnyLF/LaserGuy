@@ -25,6 +25,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* StaticMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "A")
+	float RepairLevel;
 	//
 	//-------------------------------------------------
 	//

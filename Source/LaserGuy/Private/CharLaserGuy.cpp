@@ -114,6 +114,7 @@ void ACharLaserGuy::LookTo(FVector Target)
 	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), Target);
 
 	PartHead->SetRelativeRotation(FRotator(PartHead->GetRelativeRotation().Pitch, LookAtRotation.Yaw, PartHead->GetRelativeRotation().Roll));
+	PartBody->SetRelativeRotation(FRotator(PartHead->GetRelativeRotation().Pitch, LookAtRotation.Yaw, PartHead->GetRelativeRotation().Roll));
 }
 
 void ACharLaserGuy::FreezeLaserGuy()

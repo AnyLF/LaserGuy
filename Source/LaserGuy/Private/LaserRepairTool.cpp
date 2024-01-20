@@ -7,7 +7,8 @@
 #include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
-ALaserRepairTool::ALaserRepairTool()
+ALaserRepairTool::ALaserRepairTool():
+	RepairLevel(25.0f)
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -36,7 +37,7 @@ void ALaserRepairTool::Tick(float DeltaTime)
 void ALaserRepairTool::CollectLaserRepairTool()
 {
 	AGameModeLaserGuy* GM_LaserGuy = Cast<AGameModeLaserGuy>(UGameplayStatics::GetGameMode(this));
-	GM_LaserGuy->CurrentOverHeatMeter = UKismetMathLibrary::Max(GM_LaserGuy->CurrentOverHeatMeter - 25, 0);
+	GM_LaserGuy->CurrentOverHeatMeter = UKismetMathLibrary::Max(GM_LaserGuy->CurrentOverHeatMeter - RepairLevel, 0);
 	K2_DestroyActor();
 }
 
